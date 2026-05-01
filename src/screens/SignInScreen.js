@@ -16,7 +16,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useAuth } from '../shared';
-import { CustomToast, FloatingLabelInput, ErrorModal } from '../shared';
+import { CustomToast, FloatingLabelInput, ErrorModal, LanguageSwitch } from '../shared';
 import { ROUTES } from '../config/routes';
 import { useAuthMutations } from '../hooks/useAuthMutations';
 import { useLanguage } from '../shared';
@@ -32,6 +32,7 @@ const SignInScreen = ({ navigation }) => {
   const [errors, setErrors] = useState({});
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [currentLanguage, setCurrentLanguage] = useState('en');
   const { loginMutation } = useAuthMutations();
   const insets = useSafeAreaInsets();
   const { login } = useAuth();
@@ -80,6 +81,10 @@ const SignInScreen = ({ navigation }) => {
     setShowErrorModal(true);
   };
 
+  const handleLanguageChange = (language) => {
+    setCurrentLanguage(language);
+  };
+
   const handleSignin = async () => {
     const isValid = await validateForm();
     if (!isValid) {
@@ -102,6 +107,14 @@ const SignInScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['top', 'bottom']}>
+      {/* Header with Language Switch */}
+      <View style={styles.header}>
+        <View style={styles.headerSpacer} />
+        <LanguageSwitch 
+          currentLanguage={currentLanguage}
+          onLanguageChange={handleLanguageChange}
+        />
+      </View>
       {/* Spinner Overlay */}
       <Spinner
         visible={loading}
@@ -232,27 +245,16 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginBottom: 40,
   },
-  logoRow: {
+  header: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 32,
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
   },
-  logoText: {
-    fontSize: 28,
-    fontWeight: '400',
-    color: '#1f2937',
-  },
-  dotWrapper: {
-    position: 'relative',
-    marginLeft: 4,
-    marginTop: -4,
-  },
-  dot: {
-    position: 'absolute',
-    width: 12,
-    height: 8,
-    borderRadius: 50,
+  headerSpacer: { 
+    flex: 1 
   },
   title: {
     fontSize: 16,

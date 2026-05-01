@@ -30,16 +30,7 @@ const ForgotPasswordEmailScreen = ({ navigation }) => {
         </TouchableOpacity>
         <View style={styles.headerSpacer} />
       </View>
-
       <View style={styles.body}>
-        {/* Top logo image (same as SignIn) */}
-        <View style={styles.logoContainer}>
-          <Image
-            source={require('../assets/logo.png')}
-            style={styles.topLogo}
-            resizeMode="cover"
-          />
-        </View>
         <Text style={styles.pageTitle}>{t('forgotPassword')}</Text>
         <Text style={styles.pageSubtitle}>{t('fpEmailSubtitle')}</Text>
         {/* <Text style={styles.label}>{t('fpEmailLabel')}</Text> */}
@@ -48,9 +39,10 @@ const ForgotPasswordEmailScreen = ({ navigation }) => {
           value={email}
           onChangeText={setEmail}
           keyboardType="email-address"
+          icon="mail"
         />
         <TouchableOpacity style={styles.submitBtn} onPress={onSend}>
-          <Text style={styles.submitText}>{t('fpSendCode')}</Text>
+          <Text style={styles.submitText}>{t('continue')}</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -71,7 +63,6 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#E5E7EB',
     alignItems: 'center',
     justifyContent: 'center',
   },
