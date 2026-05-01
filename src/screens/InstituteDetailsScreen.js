@@ -165,15 +165,7 @@ const InstituteDetailsScreen = ({ route, navigation }) => {
         contentContainerStyle={[styles.scrollContent, { paddingBottom: 20 + insets.bottom }]}
         showsVerticalScrollIndicator={false}
       >
-        {/* Back Button below notch, above Image */}
-        <TouchableOpacity 
-          style={[styles.backButton, { marginTop: 8 + insets.top }]} 
-          onPress={() => navigation.goBack()}
-        >
-          <Ionicons name="arrow-back" size={24} color="#111827" />
-        </TouchableOpacity>
-
-        {/* Cover Image with Back Button */}
+        {/* Cover Image with Back Button Inside */}
         <View style={[styles.imageContainer]}>
           <Image
             source={{
@@ -181,6 +173,13 @@ const InstituteDetailsScreen = ({ route, navigation }) => {
             }}
             style={styles.image}
           />
+          {/* Back Button Inside Image */}
+          <TouchableOpacity 
+            style={[styles.backButtonInsideImage, { top: 16 + insets.top }]} 
+            onPress={() => navigation.goBack()}
+          >
+            <Ionicons name="arrow-back" size={24} color="#fff" />
+          </TouchableOpacity>
         </View>
 
         {/* Basic Info */}
@@ -282,16 +281,17 @@ const styles = StyleSheet.create({
     height: 220,
     resizeMode: "cover",
   },
-  backButton: {
+  backButtonInsideImage: {
+    position: 'absolute',
+    top: 16,
+    left: 16,
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: "#E5E7EB",
-    justifyContent: "center",
-    alignItems: "center",
-    alignSelf: "flex-start",
-    marginLeft: 16,
-    marginBottom: 12,
+    backgroundColor: '#1BB161',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 2,
   },
   detailsContainer: {
     paddingHorizontal: 16,

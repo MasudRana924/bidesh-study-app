@@ -50,15 +50,16 @@ const EventsSection = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  sectionWrapper: { marginTop: 30 },
+  sectionWrapper: { marginTop: 32 },
   sectionHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 12,
+    marginBottom: 16,
     alignItems: 'center',
+    paddingHorizontal: 16,
   },
-  sectionTitle: { fontSize: 16, fontWeight: '700', color: '#1E293B' },
-  seeAll: { fontSize: 14, fontWeight: '600', color: '#4361EE' },
+  sectionTitle: { fontSize: 18, fontWeight: '700', color: '#1E293B' },
+  seeAll: { fontSize: 14, fontWeight: '600', color: '#1BB161' },
 });
 
 export default EventsSection;

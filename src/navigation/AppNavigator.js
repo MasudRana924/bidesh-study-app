@@ -49,9 +49,9 @@ const AppNavigator = () => {
         initialRouteName={isAuthenticated ? ROUTES.MAIN.MAIN : (showOnboarding ? ROUTES.ONBOARDING.ONBOARDING : ROUTES.AUTH.SIGN_IN)}
         screenOptions={SCREEN_OPTIONS.DEFAULT}
       >
-        {!isAuthenticated && showOnboarding && (
+        {/* {!isAuthenticated && showOnboarding && (
           <Stack.Screen name={ROUTES.ONBOARDING.ONBOARDING} component={OnboardingScreen} />
-        )}
+        )} */}
         {!isAuthenticated ? (
           // Auth Stack
           <>

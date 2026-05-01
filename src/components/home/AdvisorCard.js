@@ -25,7 +25,7 @@ const AdvisorCard = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   advisorCard: {
-    backgroundColor: '#E4E7E9',
+    backgroundColor: '#EDEFF2',
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 16,
@@ -35,8 +35,7 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     position: 'relative',
     zIndex: 5,
-    // borderWidth: 1,
-    // borderColor: '#E5E7EB',
+    marginVertical: 20,
   },
   advisorInfo: { flexDirection: 'row', alignItems: 'center', flex: 1, marginRight: 12 },
   advisorAvatar: {

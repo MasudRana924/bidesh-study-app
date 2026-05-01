@@ -65,12 +65,14 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
+     backgroundColor:'#F6F6F6',
+
   },
-  headerTitle: { fontSize: 18, fontWeight: '700', color: '#111' },
+  headerTitle: { fontSize: 20, fontWeight: '700', color: '#111' },
   headerSpacer: { width: 32 },
   body: { padding: 16 },
-  pageTitle: { fontSize: 18, fontWeight: '500', color: '#2B2A29', textAlign: 'left', marginBottom: 12 },
-  pageSubtitle: { fontSize: 13, color: '#727271', marginTop: -4, marginBottom: 10 },
+  pageTitle: { fontSize: 20, fontWeight: '500', color: '#2B2A29', textAlign: 'left', marginBottom: 12 },
+  pageSubtitle: { fontSize: 14, color: '#797979', marginTop: -4, marginBottom: 10 },
   // Floating label styles are now inside component
   logoContainer: { alignItems: 'center', marginBottom: 16 },
   topLogo: {

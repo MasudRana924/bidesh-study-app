@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -15,6 +15,7 @@ import {
 import Icon from 'react-native-vector-icons/Feather';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useAuth } from '../shared';
 import { CustomToast, FloatingLabelInput, ErrorModal, LanguageSwitch } from '../shared';
 import { ROUTES } from '../config/routes';
@@ -39,8 +40,52 @@ const SignInScreen = ({ navigation }) => {
   const loading = loginMutation.isPending;
   const { t } = useLanguage();
 
+  // Load saved credentials on component mount
+  useEffect(() => {
+    loadSavedCredentials();
+    // Test AsyncStorage
+    testAsyncStorage();
+  }, []);
+
+  const testAsyncStorage = async () => {
+    try {
+      console.log('Testing AsyncStorage...');
+      await AsyncStorage.setItem('testKey', 'testValue');
+      const testValue = await AsyncStorage.getItem('testKey');
+      console.log('AsyncStorage test result:', testValue);
+      await AsyncStorage.removeItem('testKey');
+    } catch (error) {
+      console.log('AsyncStorage test error:', error);
+    }
+  };
+
+  const loadSavedCredentials = async () => {
+    try {
+      console.log('Loading saved credentials...');
+      const savedEmail = await AsyncStorage.getItem('savedEmail');
+      const savedPassword = await AsyncStorage.getItem('savedPassword');
+      const rememberMeChecked = await AsyncStorage.getItem('rememberMe');
+      
+      console.log('Saved data:', { savedEmail, savedPassword, rememberMeChecked });
+      
+      if (savedEmail && savedPassword && rememberMeChecked === 'true') {
+        console.log('Setting form data with saved credentials');
+        setFormData({
+          email: savedEmail,
+          password: savedPassword,
+        });
+        setRememberMe(true);
+        console.log('Credentials loaded successfully');
+      } else {
+        console.log('No saved credentials found');
+      }
+    } catch (error) {
+      console.log('Error loading saved credentials:', error);
+    }
+  };
+
   const validationSchema = yup.object().shape({
-    email: yup.string().email('Invalid email format').required('Email is required'),
+    email: yup.string().email('Invalid email').required('Email is required'),
     password: yup.string().required('Password is required'),
   });
 
@@ -95,6 +140,23 @@ const SignInScreen = ({ navigation }) => {
       const result = await loginMutation.mutateAsync({ email: formData.email, password: formData.password });
       
       if (result.success) {
+        // Save credentials if Remember Me is checked
+        console.log('Login successful, rememberMe:', rememberMe);
+        if (rememberMe) {
+          console.log('Saving credentials...');
+          await AsyncStorage.setItem('savedEmail', formData.email);
+          await AsyncStorage.setItem('savedPassword', formData.password);
+          await AsyncStorage.setItem('rememberMe', 'true');
+          console.log('Credentials saved successfully');
+        } else {
+          // Clear saved credentials if Remember Me is not checked
+          console.log('Clearing saved credentials...');
+          await AsyncStorage.removeItem('savedEmail');
+          await AsyncStorage.removeItem('savedPassword');
+          await AsyncStorage.removeItem('rememberMe');
+          console.log('Credentials cleared');
+        }
+        
         navigation.replace('Main');
       } else {
         // Show backend error as modal
@@ -140,11 +202,11 @@ const SignInScreen = ({ navigation }) => {
           showsVerticalScrollIndicator={false}>
           
           {/* Top Logo Image */}
-          <Image
+          {/* <Image
             source={require('../assets/logo.png')}
             style={styles.topLogo}
             resizeMode="cover"
-          />
+          /> */}
 
           {/* Logo Row */}
           

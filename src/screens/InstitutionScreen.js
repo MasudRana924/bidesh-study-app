@@ -146,13 +146,17 @@ const InstitutionScreen = ({ navigation }) => {
           {!searchActive ? (
             <Text style={styles.headerTitle}>Institutes</Text>
           ) : (
-            <TextInput
-              style={styles.searchInput}
-              placeholder="Search by name"
-              value={searchQuery}
-              onChangeText={(text) => setSearchQuery(text)}
-              autoFocus
-            />
+            <View style={styles.searchContainer}>
+              <Ionicons name="search" size={16} color="#797979" style={styles.searchIcon} />
+              <TextInput
+                style={styles.searchInput}
+                placeholder="search by name or state"
+                placeholderTextColor="#797979"
+                value={searchQuery}
+                onChangeText={(text) => setSearchQuery(text)}
+                autoFocus
+              />
+            </View>
           )}
         </View>
         <TouchableOpacity
@@ -356,14 +360,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 16,
     paddingBottom: 8,
-    marginBottom:10
+    marginBottom: 12,
   },
   filterChip: {
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 1,
     borderColor: '#E5E7EB',
-    borderRadius: 999,
+    borderRadius: 8,
     paddingVertical: 6,
     paddingHorizontal: 10,
     gap: 6,
@@ -374,7 +378,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 1,
     borderColor: '#E5E7EB',
-    borderRadius: 999,
+    borderRadius: 8,
     paddingVertical: 6,
     paddingHorizontal: 10,
     gap: 6,
@@ -389,7 +393,7 @@ const styles = StyleSheet.create({
   pill: {
     borderWidth: 1,
     borderColor: '#E5E7EB',
-    borderRadius: 999,
+    borderRadius: 8,
     paddingVertical: 6,
     paddingHorizontal: 10,
   },
@@ -418,15 +422,26 @@ const styles = StyleSheet.create({
     fontWeight: '600', 
     fontSize: 12,
   },
+  searchContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 12,
+    backgroundColor: '#F5F5F5',
+    borderRadius: 43,
+    height: 37,
+    paddingHorizontal: 12,
+  },
+  searchIcon: {
+    marginRight: 8,
+  },
   searchInput: {
     flex: 1,
-    marginLeft: 12,
     paddingVertical: 6,
-    paddingHorizontal: 12,
-    borderRadius: 8,
-    backgroundColor: '#f0f0f0',
     fontSize: width * 0.04,
-    height: 35,
+    height: 37,
+    color: '#797979',
+    backgroundColor: 'transparent',
   },
   list: {
     paddingHorizontal: 16,
@@ -434,12 +449,11 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: '#fff',
-    borderRadius: 16,
-    padding: 20,
-    marginBottom: 20,
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 16,
     borderWidth: 1,
-    borderColor: '#e0e0e0',
-
+    borderColor: '#E5E7EB',
   },
   cardHeader: {
     flexDirection: 'row',

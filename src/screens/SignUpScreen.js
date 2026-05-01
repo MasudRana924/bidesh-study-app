@@ -133,15 +133,6 @@ const SignUpScreen = ({ navigation }) => {
             <View style={styles.headerSpacer} />
           </View>
 
-          {/* Top Logo Image */}
-          <Image
-            source={require('../assets/logo.png')}
-            style={styles.topLogo}
-            resizeMode="cover"
-          />
-
-          
-
           {/* Welcome Title */}
           <Text style={styles.welcomeTitle}>Let’s get started!</Text>
 
@@ -220,6 +211,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor:'#F6F6F6',
+    marginBottom: 24,
   },
   headerSpacer: { width: 32 },
   topLogo: {

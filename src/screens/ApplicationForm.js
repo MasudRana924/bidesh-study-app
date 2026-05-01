@@ -161,14 +161,14 @@ const ApplicationForm = ({ navigation }) => {
           <TextInput
             style={styles.input}
             placeholder="Name"
-            placeholderTextColor="#C0C0C0"
+            placeholderTextColor="#7A7A7D"
             value={formData.name}
             onChangeText={(text) => setFormData({ ...formData, name: text })}
           />
           <TextInput
             style={styles.input}
             placeholder="Address"
-            placeholderTextColor="#C0C0C0"
+            placeholderTextColor="#7A7A7D"
             value={formData.address}
             onChangeText={(text) =>
               setFormData({ ...formData, address: text })
@@ -177,7 +177,7 @@ const ApplicationForm = ({ navigation }) => {
           <TextInput
             style={styles.input}
             placeholder="University Name"
-            placeholderTextColor="#C0C0C0"
+            placeholderTextColor="#7A7A7D"
             value={formData.university}
             onChangeText={(text) =>
               setFormData({ ...formData, university: text })
@@ -186,7 +186,7 @@ const ApplicationForm = ({ navigation }) => {
           <TextInput
             style={styles.input}
             placeholder="Father's Name"
-            placeholderTextColor="#C0C0C0"
+            placeholderTextColor="#7A7A7D"
             value={formData.fatherName}
             onChangeText={(text) =>
               setFormData({ ...formData, fatherName: text })
@@ -195,7 +195,7 @@ const ApplicationForm = ({ navigation }) => {
           <TextInput
             style={styles.input}
             placeholder="Birthday"
-            placeholderTextColor="#C0C0C0"
+            placeholderTextColor="#7A7A7D"
             value={formData.birthday}
             onChangeText={(text) =>
               setFormData({ ...formData, birthday: text })
@@ -325,14 +325,14 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: "#C0C0C0",
-    borderRadius: 10,
+    borderColor: "#F5F5F5",
+    borderRadius: 16,
     paddingVertical: 12,
     paddingHorizontal: 12,
     fontSize: 14,
     marginBottom: 10,
-    backgroundColor: "#fff",
-    height: 48,
+    backgroundColor: "#F5F5F5",
+    height: 58,
     color: "#000",
   },
   uploadSection: {

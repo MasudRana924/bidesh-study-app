@@ -23,17 +23,17 @@ const ChangePasswordScreen = ({ navigation }) => {
     navigation.goBack();
   };
 
-  const PasswordField = ({ label, value, onChangeText, secureKey }) => (
+  const PasswordField = ({ label, value, onChangeText, secureKey, placeholder, iconName }) => (
     <View style={styles.fieldWrapper}>
-      <Text style={styles.label}>{label}</Text>
       <View style={styles.inputRow}>
+        <Ionicons name={iconName} size={20} color="#7A7A7D" style={styles.inputIcon} />
         <TextInput
           style={styles.input}
           value={value}
           onChangeText={onChangeText}
           secureTextEntry={secure[secureKey]}
-          placeholder="••••••••"
-          placeholderTextColor="#9CA3AF"
+          placeholder={placeholder}
+          placeholderTextColor="#7A7A7D"
         />
         <TouchableOpacity style={styles.eyeBtn} onPress={() => setSecure((s) => ({ ...s, [secureKey]: !s[secureKey] }))}>
           <Ionicons name={secure[secureKey] ? 'eye-off-outline' : 'eye-outline'} size={20} color="#6B7280" />
@@ -51,11 +51,14 @@ const ChangePasswordScreen = ({ navigation }) => {
         <Text style={styles.headerTitle}>{t('changePasswordTitle')}</Text>
         <View style={styles.headerSpacer} />
       </View>
+      <View>
+        <Text style={styles.description}>{t('changePasswordDescription')}</Text>
+      </View>
 
       <View style={styles.body}>
-        <PasswordField label={t('currentPassword')} value={currentPassword} onChangeText={setCurrentPassword} secureKey="c" />
-        <PasswordField label={t('newPassword')} value={newPassword} onChangeText={setNewPassword} secureKey="n" />
-        <PasswordField label={t('confirmPassword')} value={confirmPassword} onChangeText={setConfirmPassword} secureKey="r" />
+        <PasswordField label={t('currentPassword')} value={currentPassword} onChangeText={setCurrentPassword} secureKey="c" placeholder="Current Password" iconName="lock-closed" />
+        <PasswordField label={t('newPassword')} value={newPassword} onChangeText={setNewPassword} secureKey="n" placeholder="New Password" iconName="lock-closed" />
+        <PasswordField label={t('confirmPassword')} value={confirmPassword} onChangeText={setConfirmPassword} secureKey="r" placeholder="Confirm Password" iconName="lock-closed" />
 
         <TouchableOpacity style={styles.submitBtn} onPress={onSubmit}>
           <Text style={styles.submitText}>{t('updatePassword')}</Text>
@@ -75,28 +78,48 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
     backgroundColor: '#fff',
   },
-  headerBtn: { padding: 8 },
+  headerBtn: { padding: 0 },
   headerTitle: { fontSize: 18, fontWeight: '700', color: '#111' },
   headerSpacer: { width: 32 },
+  description: { 
+    fontSize: 16, 
+    color: '#797979', 
+    paddingHorizontal: 16, 
+    marginBottom: 16 
+  },
   body: { padding: 16 },
   fieldWrapper: { marginBottom: 14 },
-  label: { fontSize: 13, color: '#374151', fontWeight: '600', marginBottom: 6 },
+  inputIcon: {
+    marginLeft: 14,
+    marginRight: 8,
+    color:'#1F1F1F'
+  },
   inputRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#F9FAFB',
-    borderRadius: 10,
+    backgroundColor: '#F6F6F6',
+    borderRadius: 16,
     borderWidth: 1,
-    borderColor: '#E5E7EB',
+    borderColor: '#F6F6F6',
+    height: 62,
   },
-  input: { flex: 1, height: 45, paddingHorizontal: 14, color: '#111827', fontSize: 15 },
+  input: { 
+    flex: 1, 
+    height: 62, 
+    paddingHorizontal: 14, 
+    color: '#111827', 
+    fontSize: 15,
+    backgroundColor: 'transparent',
+  },
   eyeBtn: { paddingHorizontal: 12 },
   submitBtn: {
     marginTop: 10,
     backgroundColor: '#1BB161',
     paddingVertical: 14,
-    borderRadius: 10,
+    borderRadius: 8,
     alignItems: 'center',
+    height: 50,
+    justifyContent: 'center',
   },
   submitText: { color: '#fff', fontSize: 16, fontWeight: '700' },
 });

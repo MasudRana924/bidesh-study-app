@@ -47,16 +47,28 @@ export const AuthProvider = ({ children }) => {
         headers: { 'Content-Type': 'application/json', 'x-skip-auth': 'true' },
       });
       console.log('Login success response:', JSON.stringify(data));
-      const authToken = data?.token || data?.accessToken || data?.access_token;
-      const userData = data?.user || data?.data?.user || null;
+      const authToken = data?.data?.token || data?.token || data?.accessToken || data?.access_token;
+      const userData = data?.data?.user || data?.user || data?.data?.user || null;
+      
+      console.log('Extracted token:', authToken);
+      console.log('Extracted user:', userData);
+      
+      if (!authToken || !userData) {
+        console.log('Missing token or user data');
+        return { success: false, error: 'Invalid response from server' };
+      }
       await AsyncStorage.setItem('authToken', authToken);
       await AsyncStorage.setItem('userData', JSON.stringify(userData));
       setToken(authToken);
       setUser(userData);
       return { success: true, data };
     } catch (error) {
+      console.log('Login error:', error);
+      console.log('Login error message:', error?.message);
+      console.log('Login error response:', error?.response);
       console.log('Login error status:', error?.response?.status);
-      console.log('Login error data:', JSON.stringify(error?.response?.data));
+      console.log('Login error data:', error?.response?.data);
+      console.log('Login error config:', error?.config);
       // Fallback: try alternate path if 404/405
       const status = error?.response?.status;
       const data = error?.response?.data;
@@ -125,6 +137,10 @@ export const AuthProvider = ({ children }) => {
     try {
       await AsyncStorage.removeItem('authToken');
       await AsyncStorage.removeItem('userData');
+      // Clear saved credentials on logout
+      await AsyncStorage.removeItem('savedEmail');
+      await AsyncStorage.removeItem('savedPassword');
+      await AsyncStorage.removeItem('rememberMe');
       setToken(null);
       setUser(null);
     } catch (error) {
