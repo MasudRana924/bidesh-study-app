@@ -11,6 +11,7 @@ import InstituteDetailsScreen from '../screens/InstituteDetailsScreen';
 import NotificationsScreen from '../screens/NotificationsScreen';
 import ApplicationForm from '../screens/ApplicationForm';
 import AdviserChat from '../screens/AdviserChat';
+import AIAdvisorScreen from '../screens/AIAdvisorScreen';
 import EventsScreen from '../screens/EventsScreen';
 import OnboardingScreen from '../screens/OnboardingScreen';
 import SupportScreen from '../screens/SupportScreen';
@@ -84,6 +85,11 @@ const AppNavigator = () => {
             <Stack.Screen
               name={ROUTES.MAIN.ADVISER_CHAT}
               component={AdviserChat}
+              options={SCREEN_OPTIONS.DEFAULT}
+            />
+            <Stack.Screen
+              name={ROUTES.MAIN.AI_ADVISOR}
+              component={AIAdvisorScreen}
               options={SCREEN_OPTIONS.DEFAULT}
             />
             <Stack.Screen

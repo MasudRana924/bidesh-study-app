@@ -1,0 +1,86 @@
+/**
+ * Fallback list when the institutions API is empty or unavailable.
+ * minGpa / ielts = minimum requirements for admission matching.
+ */
+export const FALLBACK_INSTITUTIONS = [
+  {
+    id: 1,
+    name: 'Algoma University',
+    location: 'Nova Scotia, Canada',
+    programs: '2 matching programs',
+    acceptance: '74%',
+    cost: '$12k',
+    price: 12000,
+    ielts: 6.5,
+    minGpa: 2.7,
+    country: 'Canada',
+    logoType: 'algoma',
+    coverImage:
+      'https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=800&q=80',
+    desc: 'Undergraduate and graduate programs with strong community ties.',
+  },
+  {
+    id: 2,
+    name: 'Acadia University',
+    location: 'Nova Scotia, Canada',
+    programs: '2 matching programs',
+    acceptance: '74%',
+    cost: '$14k',
+    price: 14000,
+    ielts: 6.0,
+    minGpa: 3.0,
+    country: 'Canada',
+    logoType: 'acadia',
+    coverImage:
+      'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80',
+    desc: 'Liberal arts and sciences with a residential campus experience.',
+  },
+  {
+    id: 3,
+    name: 'Cal Arts University',
+    location: 'Nova Scotia, Canada',
+    programs: '2 matching programs',
+    acceptance: '74%',
+    cost: '$10k',
+    price: 10000,
+    ielts: 5.5,
+    minGpa: 2.5,
+    country: 'Canada',
+    logoType: 'calArts',
+    coverImage:
+      'https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=800&q=80',
+    desc: 'Creative arts and design-focused programs.',
+  },
+  {
+    id: 4,
+    name: 'University of Westminster',
+    location: 'London, UK',
+    programs: '3 matching programs',
+    acceptance: '68%',
+    cost: '£11k',
+    price: 11000,
+    ielts: 6.5,
+    minGpa: 3.2,
+    country: 'UK',
+    logoType: 'acadia',
+    coverImage:
+      'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80',
+    desc: 'Central London location with diverse international cohort.',
+  },
+  {
+    id: 5,
+    name: 'Victoria University',
+    location: 'Melbourne, Australia',
+    programs: '4 matching programs',
+    acceptance: '72%',
+    cost: 'A$15k',
+    price: 15000,
+    ielts: 6.0,
+    minGpa: 2.8,
+    country: 'Australia',
+    logoType: 'algoma',
+    coverImage:
+      'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80',
+    desc: 'Research-led teaching in Melbourne.',
+  },
+];

@@ -17,7 +17,7 @@ const HomeHeader = ({ insets, navigation, profileName, onMenuPress, headerHeight
         <View style={styles.row}>
           <View style={styles.leftSection}>
             <TouchableOpacity style={styles.roundIconBtn} onPress={onMenuPress}>
-              <Icon name="menu" size={20} color="#fff" />
+              <Icon name="menu" size={20} color="#1BB161" />
             </TouchableOpacity>
             <View style={styles.greetingContainer}>
               <Text style={styles.greeting}>Hi, {profileName}</Text>
@@ -29,7 +29,7 @@ const HomeHeader = ({ insets, navigation, profileName, onMenuPress, headerHeight
             <TouchableOpacity
               style={styles.roundIconBtn}
               onPress={() => navigation.navigate(ROUTES.MAIN.NOTIFICATIONS)}>
-              <Icon name="bell" size={18} color="#fff" />
+              <Icon name="bell" size={18} color="#1BB161" />
               <View style={styles.badge}>
                 <Text style={styles.badgeText}>3</Text>
               </View>
@@ -38,7 +38,7 @@ const HomeHeader = ({ insets, navigation, profileName, onMenuPress, headerHeight
             <TouchableOpacity
               style={[styles.roundIconBtn, { marginLeft: 10 }]}
               onPress={() => navigation.navigate(ROUTES.MAIN.ADVISER_CHAT)}>
-              <Icon name="message-circle" size={18} color="#fff" />
+              <Icon name="message-circle" size={18} color="#1BB161" />
               <View style={styles.badge}>
                 <Text style={styles.badgeText}>5</Text>
               </View>
@@ -56,18 +56,12 @@ const styles = StyleSheet.create({
   },
   header: {
     flex: 1,
-    backgroundColor: '#1BB161',
+    backgroundColor: '#fff',
     paddingHorizontal: 20,
     paddingBottom: 4,
     borderBottomLeftRadius: 24,
     borderBottomRightRadius: 24,
     position: 'relative',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
-    elevation: 5,
-    overflow: 'hidden',
   },
   patternOverlay: {
     position: 'absolute',
@@ -87,27 +81,19 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    // backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    backgroundColor: 'transparent',
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
-    borderWidth: 2,
-    borderColor: '#1BB161',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 2,
   },
   greeting: { 
     fontSize: 22, 
     fontWeight: '700', 
-    color: '#fff',
-    textShadow: { shadowColor: 'rgba(0,0,0,0.2)', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.4, shadowRadius: 3 },
+    color: '#1E293B',
   },
   subGreeting: {
     fontSize: 12,
-    color: 'rgba(255, 255, 255, 0.8)',
+    color: '#64748B',
     fontWeight: '500',
     marginTop: 2,
   },

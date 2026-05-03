@@ -7,6 +7,7 @@ import HomeHeader from '../components/home/HomeHeader';
 import HomeDrawer from '../components/home/HomeDrawer';
 import EventsSection from '../components/home/EventsSection';
 import AdvisorCard from '../components/home/AdvisorCard';
+import ApplicationStatusCards from '../components/home/ApplicationStatusCards';
 import WhyChooseUs from '../components/home/WhyChooseUs';
 import InstitutionsSection from '../components/home/InstitutionsSection';
 import ImageSlider from '../components/home/ImageSlider';
@@ -67,7 +68,7 @@ const HomeScreen = ({ navigation }) => {
   };
 
   // Layout constants
-  const HEADER_BASE_HEIGHT = 160; // base header body height (excludes notch)
+  const HEADER_BASE_HEIGHT = 120; // base header body height (excludes notch)
 
   return (
     <SafeAreaView style={styles.container}>
@@ -86,6 +87,9 @@ const HomeScreen = ({ navigation }) => {
           onMenuPress={openMenu}
           headerHeight={HEADER_BASE_HEIGHT}
         />
+
+        {/* Application Status Cards */}
+        <ApplicationStatusCards />
 
         {/* Advisor Card (simple, no overlap) */}
         <View style={styles.advisorContainer}>

@@ -18,10 +18,28 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const { width } = Dimensions.get("window");
 
+const DEFAULT_COVER =
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL2sw4hgQft6loHWnHAksFXmDsIpPu8jqdhg&s';
+
 const InstituteDetailsScreen = ({ route, navigation }) => {
   const insets = useSafeAreaInsets();
-  const { institute } = route.params;
+  const institute = route.params?.institute;
   const [activeTab, setActiveTab] = useState('programs');
+
+  const displayName = institute?.name || 'Institute';
+  const displayLocation = institute?.location || 'New York, USA';
+  const coverUri = institute?.coverImage || institute?.image || DEFAULT_COVER;
+  const minGpa =
+    typeof institute?.minGpa === 'number'
+      ? institute.minGpa
+      : typeof institute?.min_gpa === 'number'
+        ? institute.min_gpa
+        : null;
+  const reqIelts =
+    typeof institute?.ielts === 'number' ? institute.ielts : null;
+  const instituteType = institute?.programs || institute?.type || 'Private University';
+  const tuitionLabel = institute?.cost || '$25,000 per year';
+  const countryLabel = institute?.country || '';
 
   // Dummy data
   const programs = [
@@ -51,12 +69,23 @@ const InstituteDetailsScreen = ({ route, navigation }) => {
     },
   ];
 
-  const requirements = [
-    "Minimum GPA: 3.0",
-    "IELTS: 6.5 or TOEFL: 90",
-    "Copy of passport",
-    "Transcripts & certificates",
-  ];
+  const requirements =
+    institute &&
+    (minGpa != null || reqIelts != null)
+      ? [
+          ...(minGpa != null ? [`Minimum GPA: ${minGpa}`] : []),
+          ...(reqIelts != null
+            ? [`IELTS: ${reqIelts} overall (or equivalent)`]
+            : []),
+          'Copy of passport',
+          'Transcripts & certificates',
+        ]
+      : [
+          'Minimum GPA: 3.0',
+          'IELTS: 6.5 or TOEFL: 90',
+          'Copy of passport',
+          'Transcripts & certificates',
+        ];
 
   const scholarships = [
     { name: "Merit-based Scholarship", amount: "50% Tuition Fee" },
@@ -168,9 +197,7 @@ const InstituteDetailsScreen = ({ route, navigation }) => {
         {/* Cover Image with Back Button Inside */}
         <View style={[styles.imageContainer]}>
           <Image
-            source={{
-              uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL2sw4hgQft6loHWnHAksFXmDsIpPu8jqdhg&s",
-            }}
+            source={{ uri: coverUri }}
             style={styles.image}
           />
           {/* Back Button Inside Image */}
@@ -184,23 +211,39 @@ const InstituteDetailsScreen = ({ route, navigation }) => {
 
         {/* Basic Info */}
         <View style={styles.detailsContainer}>
-          <Text style={styles.sectionTitle}>Institute Info</Text>
+          <Text style={styles.sectionTitle}>{displayName}</Text>
           <View style={styles.infoRow}>
             <Ionicons name="location-sharp" size={20} color="#DF252A" />
-            <Text style={styles.infoText}>New York, USA</Text>
+            <Text style={styles.infoText}>{displayLocation}</Text>
           </View>
+          {countryLabel ? (
+            <View style={styles.infoRow}>
+              <Ionicons name="earth-outline" size={20} color="#DF252A" />
+              <Text style={styles.infoText}>{countryLabel}</Text>
+            </View>
+          ) : null}
           <View style={styles.infoRow}>
             <MaterialIcons name="school" size={20} color="#DF252A" />
-            <Text style={styles.infoText}>Private University</Text>
+            <Text style={styles.infoText}>{instituteType}</Text>
           </View>
-          <View style={styles.infoRow}>
-            <FontAwesome name="star" size={20} color="#DF252A" />
-            <Text style={styles.infoText}>Top 50 in USA</Text>
-          </View>
+          {institute?.acceptance ? (
+            <View style={styles.infoRow}>
+              <FontAwesome name="star" size={20} color="#DF252A" />
+              <Text style={styles.infoText}>Acceptance {institute.acceptance}</Text>
+            </View>
+          ) : null}
           <View style={styles.infoRow}>
             <MaterialIcons name="attach-money" size={20} color="#DF252A" />
-            <Text style={styles.infoText}>$25,000 per year</Text>
+            <Text style={styles.infoText}>
+              {tuitionLabel}
+              {tuitionLabel !== '—' ? ' (indicative)' : ''}
+            </Text>
           </View>
+          {institute?.desc ? (
+            <Text style={[styles.infoText, { marginLeft: 0, marginTop: 10, lineHeight: 22 }]}>
+              {institute.desc}
+            </Text>
+          ) : null}
           <View style={styles.infoRow}>
             <Ionicons name="link" size={20} color="#DF252A" />
             <Text style={[styles.infoText, { color: "#0077CC" }]}>https://www.exampleuniversity.com</Text>

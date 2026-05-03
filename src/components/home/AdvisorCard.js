@@ -8,16 +8,19 @@ const AdvisorCard = ({ navigation }) => {
   return (
     <View style={styles.advisorCard}>
       <View style={styles.advisorInfo}>
-        <View style={styles.advisorAvatar}>
-          <Text style={styles.advisorAvatarText}>SM</Text>
-        </View>
+        
         <View style={styles.advisorDetails}>
-          <Text style={styles.advisorName} numberOfLines={1} ellipsizeMode="tail">{t('consultAdvisor')}</Text>
+          <Text style={styles.advisorName} numberOfLines={2} ellipsizeMode="tail">
+            {t('matchWithAiAdvisor')}
+          </Text>
           {/* <Text style={styles.advisorSub} numberOfLines={1} ellipsizeMode="tail">Shipra Mehra</Text> */}
         </View>
       </View>
-      <TouchableOpacity style={styles.chatButton} onPress={() => navigation.navigate(ROUTES.MAIN.ADVISER_CHAT)}>
-        <Text style={styles.chatButtonText}>{t('chatNow')}</Text>
+      <TouchableOpacity
+        style={styles.chatButton}
+        onPress={() => navigation.navigate(ROUTES.MAIN.AI_ADVISOR)}
+      >
+        <Text style={styles.chatButtonText}>{t('matchNow')}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -25,7 +28,7 @@ const AdvisorCard = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   advisorCard: {
-    backgroundColor: '#EDEFF2',
+    backgroundColor: '#D4F1D4',
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 16,

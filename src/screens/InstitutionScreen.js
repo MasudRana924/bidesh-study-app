@@ -14,71 +14,9 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useInstitutions } from '../hooks/useInstitutions';
 import { ROUTES } from '../config/routes';
+import { FALLBACK_INSTITUTIONS } from '../constants/institutionsFallback';
 
 const { width } = Dimensions.get('window');
-
-const institutes = [
-  {
-    id: 1,
-    name: 'Algoma University',
-    location: 'Nova Scotia, Canada',
-    programs: '2 matching programs',
-    acceptance: '74%',
-    cost: '$12k',
-    price: 12000,
-    ielts: 6.5,
-    country: 'Canada',
-    logoType: 'algoma',
-  },
-  {
-    id: 2,
-    name: 'Acadia University',
-    location: 'Nova Scotia, Canada',
-    programs: '2 matching programs',
-    acceptance: '74%',
-    cost: '$14k',
-    price: 14000,
-    ielts: 6.0,
-    country: 'Canada',
-    logoType: 'acadia',
-  },
-  {
-    id: 3,
-    name: 'Cal Arts University',
-    location: 'Nova Scotia, Canada',
-    programs: '2 matching programs',
-    acceptance: '74%',
-    cost: '$10k',
-    price: 10000,
-    ielts: 5.5,
-    country: 'Canada',
-    logoType: 'calArts',
-  },
-  {
-    id: 4,
-    name: 'University of Westminster',
-    location: 'London, UK',
-    programs: '3 matching programs',
-    acceptance: '68%',
-    cost: '£11k',
-    price: 11000,
-    ielts: 6.5,
-    country: 'UK',
-    logoType: 'acadia',
-  },
-  {
-    id: 5,
-    name: 'Victoria University',
-    location: 'Melbourne, Australia',
-    programs: '4 matching programs',
-    acceptance: '72%',
-    cost: 'A$15k',
-    price: 15000,
-    ielts: 6.0,
-    country: 'Australia',
-    logoType: 'algoma',
-  },
-];
 
 const renderLogo = (type) => {
   switch (type) {
@@ -115,7 +53,7 @@ const InstitutionScreen = ({ navigation }) => {
   } = useInstitutions({ search: searchQuery });
 
   // Fallback to mock data if API fails or returns empty
-  const institutions = institutionsData?.institutions || institutes;
+  const institutions = institutionsData?.institutions || FALLBACK_INSTITUTIONS;
 
   // Build country options from data
   const countries = ['All', ...Array.from(new Set(institutions.map(i => i.country).filter(Boolean)))];
@@ -300,6 +238,12 @@ const InstitutionScreen = ({ navigation }) => {
             </View>
             {/* Tags */}
             <View style={styles.tagRow}>
+              <View style={styles.tag}>
+                <Ionicons name="school-outline" size={14} color="#323232" style={styles.tagIcon} />
+                <Text style={styles.tagText}>
+                  GPA {item.minGpa != null ? `${item.minGpa}+` : '—'}
+                </Text>
+              </View>
               <View style={styles.tag}>
                 <Ionicons name="ribbon-outline" size={14} color="#323232" style={styles.tagIcon} />
                 <Text style={styles.tagText}>IELTS {item.ielts || '-'}</Text>
